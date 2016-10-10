@@ -5,6 +5,8 @@ using System.IO;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Data.Common;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Assignment1
 {
@@ -21,10 +23,70 @@ namespace Assignment1
 
         [WebMethod]
         [ScriptMethod(UseHttpGet = true)]
-        public string EmployeeInfo()
+        public string EmployeeInfo_Old()
         {
             string file = Server.MapPath("~/App_Data/Employee.json");
             return File.ReadAllText(file);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat=ResponseFormat.Json, UseHttpGet = true)]
+        public string EmployeeInfo()
+        {
+            List<Employee1> emplist = GetEmployeeList();
+            string response = JsonConvert.SerializeObject(emplist, Formatting.None);
+            return response;
+        }
+
+
+        private List<Employee1> GetEmployeeList()
+        {
+
+            List<Employee1> empList = new List<Employee1>();
+
+            empList.Add(new Employee1
+            {
+                employeeId = 6021,
+                firstName = "John",
+                lastName = "Doe",
+                state = "Arizona",
+                city = "Phoenix"
+            });
+
+            empList.Add(new Employee1
+            {
+                employeeId = 6022,
+                firstName = "Anna",
+                lastName = "Smith",
+                state = "California",
+                city = "Sacramento"
+            });
+
+            empList.Add(new Employee1
+            {
+                employeeId = 6023,
+                firstName = "Peter",
+                lastName = "Jones",
+                state = "Colorado",
+                city = "Denver"
+            });
+
+            return empList;
+
+        }
+
+        private class Employee1
+        {
+            public int employeeId { get; set; }
+
+            public string firstName { get; set; }
+
+            public string lastName { get; set; }
+
+            public string state { get; set; }
+
+            public string city { get; set; }
+
         }
 
         [WebMethod]

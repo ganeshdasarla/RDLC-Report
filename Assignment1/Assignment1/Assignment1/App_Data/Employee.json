@@ -1,0 +1,23 @@
+﻿[
+  {
+    "employeeId": 6021,
+    "firstName": "John",
+    "lastName": "Doe",
+    "state": "Arizona",
+    "city": "Phoenix"
+  },
+  {
+    "employeeId": 6022,
+    "firstName": "Anna",
+    "lastName": "Smith",
+    "state": "California",
+    "city": "Sacramento"
+  },
+  {
+    "employeeId": 6023,
+    "firstName": "Peter",
+    "lastName": "Jones",
+    "state": "Colorado",
+    "city": "Denver"
+  }
+]
